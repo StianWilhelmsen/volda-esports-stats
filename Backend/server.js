@@ -8,7 +8,12 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = 'user your own riot api key here';
+const API_KEY = process.env.RIOT_API_KEY;
+
+if (!API_KEY) {
+  console.error('Missing RIOT_API_KEY. Add it to a .env file in the project root (see .env.example).');
+  process.exit(1);
+}
 
 // Endpoint to get PUUID by Riot ID (gameName + tagLine)
 app.get('/api/puuid/:gameName/:tagLine', async (req, res) => {

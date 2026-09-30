@@ -34,7 +34,7 @@ src/
 
 ### Prerequisites
 
-- Node.js (v18 or newer recommended)
+- Node.js 20.6 or newer (needed for `--env-file`)
 - A Riot Games API key from the [Riot Developer Portal](https://developer.riotgames.com/)
 
 ### Install
@@ -45,13 +45,13 @@ npm install
 
 ### Configure the API key
 
-Open `Backend/server.js` and replace the placeholder value of `API_KEY` with your own Riot API key:
+Copy `.env.example` to `.env` in the project root and put your Riot API key in it:
 
-```js
-const API_KEY = 'RGAPI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';
+```
+RIOT_API_KEY=RGAPI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-> Don't commit your real key. Development keys expire every 24 hours, so you'll need to renew them regularly.
+`.env` is gitignored, so the key stays out of the repo. Development keys expire every 24 hours, so you'll need to renew them regularly.
 
 ### Run
 
@@ -59,7 +59,7 @@ Start the backend and the frontend in two separate terminals:
 
 ```bash
 # Terminal 1 – backend (http://localhost:5000)
-node Backend/server.js
+npm run server
 
 # Terminal 2 – frontend (http://localhost:3000)
 npm start
@@ -90,5 +90,6 @@ The app caches player data and PUUIDs in `localStorage`. To force a fresh fetch,
 | Command | Description |
 | --- | --- |
 | `npm start` | Starts the frontend dev server |
+| `npm run server` | Starts the backend, loading `RIOT_API_KEY` from `.env` |
 | `npm run build` | Builds a production bundle into `build/` |
 | `npm test` | Runs the test runner in watch mode |
