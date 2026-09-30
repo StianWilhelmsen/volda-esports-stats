@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Oval } from "react-loader-spinner";
-import MatchCard from "./MatchCard.tsx";
+import MatchCard from "./MatchCard";
 
 interface CoachCardProps {
   coach: {
     tagLine: string;
     role: string;
+    picture: string;
   };
 }
 
@@ -20,7 +21,7 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
     setError(null);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/puuid/Kombos/${encodeURIComponent}000`
+        `http://localhost:5000/api/puuid/Kombos/${encodeURIComponent(coach.tagLine)}`
       );
       if (!response.ok) {
         const errorText = await response.text();
@@ -52,7 +53,7 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
 
       const matchIds = await matchIdsResponse.json();
       const matchDetails = await Promise.all(
-        matchIds.map(async (matchId) => {
+        matchIds.map(async (matchId: string) => {
           try {
             const res = await fetch(
               `http://localhost:5000/api/match/EUROPE/${matchId}`
@@ -93,7 +94,7 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
       {/* Coach Details */}
       <div className="text-center mb-6">
         <img
-          src="Coach.png"
+          src={coach.picture}
           alt="Kombos"
           className="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-yellow-400"
         />
@@ -127,7 +128,12 @@ const CoachCard: React.FC<CoachCardProps> = ({ coach }) => {
           <h3 className="text-xl font-bold text-yellow-400 mb-4">Recent Matches</h3>
           <ul className="space-y-4">
             {matches.map((match, index) => (
-              <MatchCard key={index} match={match} />
+              <MatchCard
+                key={index}
+                match={match}
+                summoner={{ name: "Kombos", puuid }}
+                itemsData={{}}
+              />
             ))}
           </ul>
         </div>

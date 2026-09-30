@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MatchCard from "../components/MatchCard.tsx";
+import MatchCard from "../components/MatchCard";
 import { Oval } from "react-loader-spinner";
 
 interface SummonerCardExpandedProps {
@@ -44,7 +44,7 @@ const SummonerCardExpanded: React.FC<SummonerCardExpandedProps> = ({ summoner })
       const matchIds = await matchIdsResponse.json();
 
       const matchDetails = await Promise.all(
-        matchIds.map(async (matchId) => {
+        matchIds.map(async (matchId: string) => {
           try {
             const res = await fetchWithRetry(`http://localhost:5000/api/match/EUROPE/${matchId}`);
             return res;

@@ -1,6 +1,6 @@
 import React from "react";
-import SummonerCardCompact from "./SummonerCardCompact.tsx";
-import SummonerCardExpanded from "./SummonerCardExpanded.tsx";
+import SummonerCardCompact from "./SummonerCardCompact";
+import SummonerCardExpanded from "./SummonerCardExpanded";
 
 interface SummonerListProps {
   summoners: any[];

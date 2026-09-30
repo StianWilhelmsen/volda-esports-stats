@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from "./components/Sidebar.tsx";
-import RoleSelector from "./components/RoleSelector.tsx";
-import SummonerList from "./components/SummonerList.tsx";
-import { fetchSummonerDetails } from "./utils/api.ts";
+import Sidebar from "./components/Sidebar";
+import RoleSelector from "./components/RoleSelector";
+import SummonerList from "./components/SummonerList";
+import { fetchSummonerDetails } from "./utils/api";
 import { Oval } from "react-loader-spinner";
-import DivisionTable from "./components/DivisionTable.tsx";
-import CoachCard from "./components/CoachCard.tsx";
+import DivisionTable from "./components/DivisionTable";
+import CoachCard from "./components/CoachCard";
 
 const REGION = "euw1";
 const SUMMONERS = [
